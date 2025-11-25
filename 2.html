@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuildPro Materials - Business Management</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --success: #2ecc71;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .auth-section {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .card .value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .profit {
+            color: var(--success);
+        }
+
+        .loss {
+            color: var(--danger);
+        }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: var(--light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .btn-success {
+            background: var(--success);
+        }
+
+        .btn-success:hover {
+            background: #27ae60;
+        }
+
+        .btn-warning {
+            background: var(--warning);
+        }
+
+        .btn-warning:hover {
+            background: #d35400;
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        /* Auth Form Styles */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+
+        .auth-form {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .auth-form h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+
+        .auth-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #7f8c8d;
+            transition: all 0.3s;
+        }
+
+        .auth-tab.active {
+            color: var(--secondary);
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            color: white;
+            font-weight: 500;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background-color: var(--success);
+        }
+
+        .notification.error {
+            background-color: var(--danger);
+        }
+
+        .notification.info {
+            background-color: var(--secondary);
+        }
+
+        .email-confirmation {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .email-confirmation .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--success);
+        }
+
+        .confirmation-code {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .confirmation-code input {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .resend-link {
+            color: var(--secondary);
+            cursor: pointer;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        .password-requirements {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+
+            .auth-section {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🏗️</div>
+                    <h1>Anyira Agency</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link active" data-page="dashboard">Dashboard</a></li>
+                        <li><a href="#" class="nav-link" data-page="inventory">Inventory</a></li>
+                        <li><a href="#" class="nav-link" data-page="sales">Sales</a></li>
+                        <li><a href="#" class="nav-link" data-page="reports">Reports</a></li>
+                        <li><a href="#" class="nav-link" data-page="settings">Settings</a></li>
+                        <li class="auth-section">
+                            <div id="userInfo" class="user-info hidden">
+                                <div class="user-avatar" id="userAvatar">U</div>
+                                <span id="userName">User</span>
+                                <button id="logoutBtn" class="btn-warning">Logout</button>
+                            </div>
+                            <div id="loginSection">
+                                <button id="authBtn">Login / Sign Up</button>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div id="notification" class="notification"></div>
+
+    <div class="container">
+        <!-- Authentication Forms -->
+        <div id="authPage" class="auth-container">
+            <div class="auth-form">
+                <h2>BuildPro Materials</h2>
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Login</button>
+                    <button class="auth-tab" data-tab="signup">Sign Up</button>
+                </div>
+
+                <!-- Login Form -->
+                <form id="loginForm" class="auth-tab-content">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn-success" style="width: 100%;">Login</button>
+                    </div>
+                    <div style="text-align: center; margin-top: 15px;">
+                        <a href="#" id="forgotPassword">Forgot your password?</a>
+                    </div>
+                </form>
+
+                <!-- Sign Up Form -->
+                <form id="signupForm" class="auth-tab-content hidden">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email Address</label>
+                        <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" placeholder="Create a password" required>
+                        <div class="password-requirements">
+                            Password must be at least 8 characters with uppercase, lowercase, and number
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupConfirmPassword">Confirm Password</label>
+                        <input type="password" id="signupConfirmPassword" placeholder="Confirm your password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="businessName">Business Name</label>
+                        <input type="text" id="businessName" placeholder="Enter your business name" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn-success" style="width: 100%;">Create Account</button>
+                    </div>
+                </form>
+
+                <!-- Email Confirmation -->
+                <div id="emailConfirmation" class="email-confirmation hidden">
+                    <div class="icon">✉️</div>
+                    <h3>Confirm Your Email</h3>
+                    <p>We've sent a confirmation code to <strong id="confirmationEmail"></strong></p>
+                    <p>Please check your inbox and enter the code below:</p>
+
+                    <div class="confirmation-code">
+                        <input type="text" maxlength="1" class="code-input">
+                        <input type="text" maxlength="1" class="code-input">
+                        <input type="text" maxlength="1" class="code-input">
+                        <input type="text" maxlength="1" class="code-input">
+                        <input type="text" maxlength="1" class="code-input">
+                        <input type="text" maxlength="1" class="code-input">
+                    </div>
+
+                    <button id="confirmCodeBtn" class="btn-success" style="width: 100%; margin-top: 20px;">Confirm
+                        Email</button>
+                    <div class="resend-link" id="resendCode">Didn't receive the code? Resend</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Application (Hidden until login) -->
+        <div id="appContent" class="hidden">
+            <div class="dashboard">
+                <div class="card">
+                    <h3>Total Profit</h3>
+                    <div class="value profit">KSh 245,800</div>
+                    <p>This Month</p>
+                </div>
+                <div class="card">
+                    <h3>Total Sales</h3>
+                    <div class="value">KSh 1,250,400</div>
+                    <p>This Month</p>
+                </div>
+                <div class="card">
+                    <h3>Active Products</h3>
+                    <div class="value">12</div>
+                    <p>In Stock</p>
+                </div>
+                <div class="card">
+                    <h3>Best Seller</h3>
+                    <div class="value">Sand</div>
+                    <p>This Month</p>
+                </div>
+            </div>
+
+            <div class="section" id="dashboardPage">
+                <h2>Business Overview</h2>
+                <p>Welcome to your building materials business management system. Here you can track inventory, sales,
+                    and profits for all your materials.</p>
+
+                <div style="margin-top: 20px;">
+                    <h3>Quick Actions</h3>
+                    <div style="display: flex; gap: 15px; margin-top: 15px;">
+                        <button class="btn-success" id="addMaterialBtn">Add New Material</button>
+                        <button class="btn-secondary" id="recordSaleBtn">Record Sale</button>
+                        <button class="btn-warning" id="generateReportBtn">Generate Report</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section hidden" id="inventoryPage">
+                <h2>Add New Material</h2>
+                <form id="materialForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="materialName">Material Name</label>
+                            <input type="text" id="materialName" placeholder="e.g., Sand, Ballast, Blocks" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input type="number" id="quantity" placeholder="e.g., 100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="unit">Unit</label>
+                            <select id="unit" required>
+                                <option value="">Select Unit</option>
+                                <option value="ton">Ton</option>
+                                <option value="cubic-meter">Cubic Meter</option>
+                                <option value="piece">Piece</option>
+                                <option value="bag">Bag</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="buyingPrice">Buying Price (KSh)</label>
+                            <input type="number" id="buyingPrice" placeholder="Cost per unit" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="marketPrice">Market Price (KSh)</label>
+                            <input type="number" id="marketPrice" placeholder="Current market price" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sellingPrice">Selling Price (KSh)</label>
+                            <input type="number" id="sellingPrice" placeholder="Your selling price" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-success">Add Material</button>
+                </form>
+            </div>
+
+            <div class="section" id="inventoryTableSection">
+                <h2>Inventory</h2>
+                <table id="inventoryTable">
+                    <thead>
+                        <tr>
+                            <th>Material</th>
+                            <th>Quantity</th>
+                            <th>Buying Price</th>
+                            <th>Market Price</th>
+                            <th>Selling Price</th>
+                            <th>Profit/Loss</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sand</td>
+                            <td>50 tons</td>
+                            <td>KSh 1,500</td>
+                            <td>KSh 2,000</td>
+                            <td>KSh 1,800</td>
+                            <td class="profit">KSh 300</td>
+                            <td class="action-buttons">
+                                <button class="btn-secondary edit-btn">Edit</button>
+                                <button class="btn-success sell-btn">Sell</button>
+                                <button class="btn-danger delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ballast</td>
+                            <td>30 tons</td>
+                            <td>KSh 1,200</td>
+                            <td>KSh 1,500</td>
+                            <td>KSh 1,400</td>
+                            <td class="profit">KSh 200</td>
+                            <td class="action-buttons">
+                                <button class="btn-secondary edit-btn">Edit</button>
+                                <button class="btn-success sell-btn">Sell</button>
+                                <button class="btn-danger delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section hidden" id="salesPage">
+                <h2>Recent Sales</h2>
+                <table id="salesTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Material</th>
+                            <th>Quantity</th>
+                            <th>Buying Price</th>
+                            <th>Selling Price</th>
+                            <th>Profit/Loss</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2023-10-15</td>
+                            <td>Sand</td>
+                            <td>10 tons</td>
+                            <td>KSh 15,000</td>
+                            <td>KSh 18,000</td>
+                            <td class="profit">KSh 3,000</td>
+                        </tr>
+                        <tr>
+                            <td>2023-10-14</td>
+                            <td>Ballast</td>
+                            <td>5 tons</td>
+                            <td>KSh 6,000</td>
+                            <td>KSh 7,000</td>
+                            <td class="profit">KSh 1,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section hidden" id="reportsPage">
+                <h2>Business Reports</h2>
+                <p>Generate detailed reports for your business performance.</p>
+                <div style="margin-top: 20px;">
+                    <button class="btn-success">Monthly Profit Report</button>
+                    <button class="btn-secondary">Inventory Summary</button>
+                    <button class="btn-warning">Sales Analysis</button>
+                </div>
+
+                <div
+                    style="margin-top: 30px; background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid var(--success);">
+                    <h3>💡 Tips for Maximizing Profits</h3>
+                    <ul style="margin-top: 15px; padding-left: 20px; list-style-type: disc;">
+                        <li style="margin-bottom: 10px;"><strong>Optimize Inventory Levels:</strong> Avoid overstocking
+                            slow-moving items to reduce storage costs and waste. Use the "Best Seller" metric to guide
+                            purchasing.</li>
+                        <li style="margin-bottom: 10px;"><strong>Dynamic Pricing:</strong> Regularly review market
+                            prices and adjust your selling price to maintain a healthy margin. Use the new edit feature
+                            to update prices quickly.</li>
+                        <li style="margin-bottom: 10px;"><strong>Bundle Products:</strong> Create packages of
+                            complementary items (e.g., Sand + Cement) at a slightly discounted rate to increase average
+                            order value.</li>
+                        <li style="margin-bottom: 10px;"><strong>Supplier Negotiation:</strong> Bulk buy your
+                            best-selling items to negotiate better buying prices, directly increasing your profit
+                            margin.</li>
+                        <li><strong>Track Loss Leaders:</strong> Identify items with low margins and consider if they
+                            drive traffic for high-margin purchases. If not, consider replacing them.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section hidden" id="settingsPage">
+                <h2>Account Settings</h2>
+                <p>Manage your account preferences and business settings.</p>
+                <div style="margin-top: 20px;">
+                    <div class="form-group">
+                        <label for="accountBusinessName">Business Name</label>
+                        <input type="text" id="accountBusinessName" value="BuildPro Materials">
+                    </div>
+                    <div class="form-group">
+                        <label for="currency">Currency</label>
+                        <select id="currency">
+                            <option value="KES" selected>Kenyan Shilling (KSh)</option>
+                            <option value="USD">US Dollar ($)</option>
+                            <option value="EUR">Euro (€)</option>
+                        </select>
+                    </div>
+                    <button class="btn-success">Save Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; BuildPro Materials. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Authentication state
+        let isLoggedIn = false;
+        let currentUser = null;
+        let pendingUser = null;
+        let confirmationCode = null;
+        let resendTimer = null;
+
+        // DOM Elements
+        const authPage = document.getElementById('authPage');
+        const appContent = document.getElementById('appContent');
+        const userInfo = document.getElementById('userInfo');
+        const loginSection = document.getElementById('loginSection');
+        const authBtn = document.getElementById('authBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const emailConfirmation = document.getElementById('emailConfirmation');
+        const notification = document.getElementById('notification');
+        const userAvatar = document.getElementById('userAvatar');
+        const userName = document.getElementById('userName');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const authTabs = document.querySelectorAll('.auth-tab');
+        const pages = {
+            dashboard: document.getElementById('dashboardPage'),
+            inventory: document.getElementById('inventoryPage'),
+            sales: document.getElementById('salesPage'),
+            reports: document.getElementById('reportsPage'),
+            settings: document.getElementById('settingsPage')
+        };
+
+        // User storage (in a real app, this would be a database)
+        let users = JSON.parse(localStorage.getItem('buildpro_users')) || [];
+
+        // Demo user for testing
+        if (users.length === 0) {
+            users.push({
+                id: 1,
+                name: 'Demo User',
+                email: 'demo@buildpro.com',
+                password: 'Password123',
+                businessName: 'Demo Construction',
+                emailVerified: true,
+                createdAt: new Date().toISOString()
+            });
+            localStorage.setItem('buildpro_users', JSON.stringify(users));
+        }
+
+        // Network Simulation Helper
+        function simulateNetworkRequest(duration = 1500) {
+            return new Promise(resolve => setTimeout(resolve, duration));
+        }
+
+        // Loading State Helper
+        function setLoading(button, isLoading, loadingText = 'Processing...') {
+            if (isLoading) {
+                button.dataset.originalText = button.textContent;
+                button.textContent = loadingText;
+                button.disabled = true;
+            } else {
+                button.textContent = button.dataset.originalText || button.textContent;
+                button.disabled = false;
+            }
+        }
+
+        // Show notification
+        function showNotification(message, type = 'success') {
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+
+        // Generate random confirmation code
+        function generateConfirmationCode() {
+            return Math.floor(100000 + Math.random() * 900000).toString();
+        }
+
+        // Simulate sending email (in a real app, this would call a backend API)
+        async function sendConfirmationEmail(email, code) {
+            console.log(`Sending confirmation code ${code} to ${email}`);
+
+            // Simulate network delay
+            await simulateNetworkRequest(1000);
+
+            // For demo purposes, we'll show the code in a notification
+            showNotification(`Demo: Confirmation code sent to ${email}: ${code}`, 'info');
+
+            // Store the code for verification
+            confirmationCode = code;
+
+            // Persist pending state
+            localStorage.setItem('buildpro_pending_user', JSON.stringify(pendingUser));
+            localStorage.setItem('buildpro_confirmation_code', code);
+
+            return true;
+        }
+
+        // Validate password strength
+        function validatePassword(password) {
+            const minLength = 8;
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasNumbers = /\d/.test(password);
+
+            return password.length >= minLength && hasUpperCase && hasLowerCase && hasNumbers;
+        }
+
+        // Switch between login and signup tabs
+        function switchAuthTab(tabName) {
+            // Update tabs
+            authTabs.forEach(tab => {
+                if (tab.getAttribute('data-tab') === tabName) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+
+            // Update forms
+            if (tabName === 'login') {
+                loginForm.classList.remove('hidden');
+                signupForm.classList.add('hidden');
+                emailConfirmation.classList.add('hidden');
+            } else {
+                loginForm.classList.add('hidden');
+                signupForm.classList.remove('hidden');
+                emailConfirmation.classList.add('hidden');
+            }
+        }
+
+        // Handle signup
+        async function signup(userData) {
+            const submitBtn = signupForm.querySelector('button[type="submit"]');
+            setLoading(submitBtn, true, 'Creating Account...');
+
+            try {
+                // Simulate network check
+                await simulateNetworkRequest(1000);
+
+                // Check if user already exists
+                const existingUser = users.find(u => u.email === userData.email);
+                if (existingUser) {
+                    showNotification('An account with this email already exists', 'error');
+                    return false;
+                }
+
+                // Validate password
+                if (!validatePassword(userData.password)) {
+                    showNotification('Password must be at least 8 characters with uppercase, lowercase, and number', 'error');
+                    return false;
+                }
+
+                // Create new user
+                const newUser = {
+                    id: users.length + 1,
+                    name: userData.name,
+                    email: userData.email,
+                    password: userData.password,
+                    businessName: userData.businessName,
+                    emailVerified: false,
+                    createdAt: new Date().toISOString()
+                };
+
+                // Store pending user for confirmation
+                pendingUser = newUser;
+
+                // Generate and send confirmation code
+                const code = generateConfirmationCode();
+                await sendConfirmationEmail(userData.email, code);
+
+                // Show confirmation UI
+                showConfirmationUI(userData.email);
+
+                return true;
+            } finally {
+                setLoading(submitBtn, false);
+            }
+        }
+
+        function showConfirmationUI(email) {
+            document.getElementById('confirmationEmail').textContent = email;
+            switchAuthTab('signup'); // Keep on signup tab but show confirmation
+            loginForm.classList.add('hidden');
+            signupForm.classList.add('hidden');
+            emailConfirmation.classList.remove('hidden');
+
+            // Clear code inputs
+            document.querySelectorAll('.code-input').forEach(input => {
+                input.value = '';
+            });
+
+            // Focus first code input
+            setTimeout(() => document.querySelector('.code-input').focus(), 100);
+
+            startResendTimer();
+        }
+
+        function startResendTimer() {
+            const resendLink = document.getElementById('resendCode');
+            let timeLeft = 30;
+
+            resendLink.style.pointerEvents = 'none';
+            resendLink.style.color = '#95a5a6';
+
+            if (resendTimer) clearInterval(resendTimer);
+
+            resendTimer = setInterval(() => {
+                resendLink.textContent = `Resend code in ${timeLeft}s`;
+                timeLeft--;
+
+                if (timeLeft < 0) {
+                    clearInterval(resendTimer);
+                    resendLink.textContent = "Didn't receive the code? Resend";
+                    resendLink.style.pointerEvents = 'auto';
+                    resendLink.style.color = ''; // Reset to CSS default
+                }
+            }, 1000);
+        }
+
+        // Confirm email with code
+        async function confirmEmail(code) {
+            const confirmBtn = document.getElementById('confirmCodeBtn');
+            setLoading(confirmBtn, true, 'Verifying...');
+
+            try {
+                await simulateNetworkRequest(1500);
+
+                if (code === confirmationCode && pendingUser) {
+                    // Mark user as verified and save
+                    pendingUser.emailVerified = true;
+                    users.push(pendingUser);
+                    localStorage.setItem('buildpro_users', JSON.stringify(users));
+
+                    // Clear pending state
+                    localStorage.removeItem('buildpro_pending_user');
+                    localStorage.removeItem('buildpro_confirmation_code');
+
+                    // Log the user in
+                    await login(pendingUser.email, pendingUser.password);
+
+                    showNotification('Email confirmed successfully! Welcome to BuildPro.', 'success');
+                    return true;
+                } else {
+                    showNotification('Invalid confirmation code. Please try again.', 'error');
+                    return false;
+                }
+            } finally {
+                setLoading(confirmBtn, false);
+            }
+        }
+
+        // Login function
+        async function login(email, password) {
+            const submitBtn = loginForm.querySelector('button[type="submit"]');
+            // Only set loading if called from form submission (button exists)
+            if (submitBtn) setLoading(submitBtn, true, 'Logging in...');
+
+            try {
+                await simulateNetworkRequest(1000);
+
+                const user = users.find(u => u.email === email && u.password === password);
+
+                if (user) {
+                    if (!user.emailVerified) {
+                        showNotification('Please verify your email before logging in', 'error');
+                        return false;
+                    }
+
+                    isLoggedIn = true;
+                    currentUser = user;
+
+                    // Update UI
+                    authPage.classList.add('hidden');
+                    appContent.classList.remove('hidden');
+                    userInfo.classList.remove('hidden');
+                    loginSection.classList.add('hidden');
+
+                    // Set user info
+                    userAvatar.textContent = user.name.charAt(0);
+                    userName.textContent = user.name;
+
+                    showNotification(`Welcome back, ${user.name}!`, 'success');
+
+                    // Set active page
+                    showPage('dashboard');
+                    return true;
+                } else {
+                    showNotification('Invalid email or password', 'error');
+                    return false;
+                }
+            } finally {
+                if (submitBtn) setLoading(submitBtn, false);
+            }
+        }
+
+        // Logout function
+        function logout() {
+            isLoggedIn = false;
+            currentUser = null;
+
+            // Update UI
+            authPage.classList.remove('hidden');
+            appContent.classList.add('hidden');
+            userInfo.classList.add('hidden');
+            loginSection.classList.remove('hidden');
+
+            // Reset to login form
+            switchAuthTab('login');
+
+            // Reset forms
+            loginForm.reset();
+            signupForm.reset();
+
+            showNotification('You have been logged out', 'success');
+        }
+
+        // Show page function
+        function showPage(pageName) {
+            // Hide all pages
+            Object.values(pages).forEach(page => {
+                page.classList.add('hidden');
+            });
+
+            // Remove active class from all nav links
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Show selected page and set active nav link
+            if (pages[pageName]) {
+                pages[pageName].classList.remove('hidden');
+
+                // Find and activate the corresponding nav link
+                const activeLink = Array.from(navLinks).find(link => link.getAttribute('data-page') === pageName);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+        }
+
+        // Event Listeners
+        // Auth tab switching
+        authTabs.forEach(tab => {
+            tab.addEventListener('click', function () {
+                const tabName = this.getAttribute('data-tab');
+                switchAuthTab(tabName);
+            });
+        });
+
+        // Login form submission
+        loginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            login(email, password);
+        });
+
+        // Signup form submission
+        signupForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            const businessName = document.getElementById('businessName').value;
+
+            if (password !== confirmPassword) {
+                showNotification('Passwords do not match', 'error');
+                return;
+            }
+
+            signup({ name, email, password, businessName });
+        });
+
+        // Email confirmation
+        document.getElementById('confirmCodeBtn').addEventListener('click', function () {
+            const codeInputs = document.querySelectorAll('.code-input');
+            let code = '';
+            codeInputs.forEach(input => {
+                code += input.value;
+            });
+
+            if (code.length === 6) {
+                confirmEmail(code);
+            } else {
+                showNotification('Please enter the complete 6-digit code', 'error');
+            }
+        });
+
+        // Resend confirmation code
+        document.getElementById('resendCode').addEventListener('click', async function () {
+            if (pendingUser) {
+                const resendLink = this;
+                resendLink.textContent = 'Sending...';
+
+                const code = generateConfirmationCode();
+                await sendConfirmationEmail(pendingUser.email, code);
+
+                showNotification('Confirmation code resent to your email', 'info');
+                startResendTimer();
+            }
+        });
+
+        // Code input navigation
+        document.querySelectorAll('.code-input').forEach((input, index, inputs) => {
+            input.addEventListener('input', function () {
+                if (this.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', function (e) {
+                if (e.key === 'Backspace' && this.value === '' && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        authBtn.addEventListener('click', function () {
+            authPage.classList.remove('hidden');
+            switchAuthTab('login');
+        });
+
+        logoutBtn.addEventListener('click', logout);
+
+        // Navigation
+        navLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (isLoggedIn) {
+                    const pageName = this.getAttribute('data-page');
+                    showPage(pageName);
+                } else {
+                    showNotification('Please log in to access this page', 'error');
+                }
+            });
+        });
+
+        // Quick action buttons
+        document.getElementById('addMaterialBtn').addEventListener('click', function () {
+            if (isLoggedIn) {
+                showPage('inventory');
+            } else {
+                showNotification('Please log in to access this feature', 'error');
+            }
+        });
+
+        // Material form submission
+        document.getElementById('materialForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('materialName').value;
+            const quantity = document.getElementById('quantity').value;
+            const unit = document.getElementById('unit').value;
+            const buyingPrice = document.getElementById('buyingPrice').value;
+            const marketPrice = document.getElementById('marketPrice').value;
+            const sellingPrice = document.getElementById('sellingPrice').value;
+
+            // Calculate profit/loss
+            const profitLoss = sellingPrice - buyingPrice;
+            const profitLossClass = profitLoss >= 0 ? 'profit' : 'loss';
+            const profitLossText = profitLoss >= 0 ? `KSh ${profitLoss}` : `-KSh ${Math.abs(profitLoss)}`;
+
+            // Create new row
+            const table = document.getElementById('inventoryTable').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+
+            newRow.innerHTML = `
+                <td>${name}</td>
+                <td>${quantity} ${unit}</td>
+                <td>KSh ${buyingPrice}</td>
+                <td>KSh ${marketPrice}</td>
+                <td>KSh ${sellingPrice}</td>
+                <td class="${profitLossClass}">${profitLossText}</td>
+                <td class="action-buttons">
+                    <button class="btn-secondary edit-btn">Edit</button>
+                    <button class="btn-success sell-btn">Sell</button>
+                    <button class="btn-danger delete-btn">Delete</button>
+                </td>
+            `;
+
+            // Reset form
+            document.getElementById('materialForm').reset();
+
+            // Add event listeners to new buttons
+            const newRowIndex = newRow.rowIndex - 1; // Adjust for header
+            attachRowListeners(newRow);
+
+            showNotification('Material added successfully!', 'success');
+        });
+
+        // Helper to attach listeners to row buttons
+        function attachRowListeners(row) {
+            const deleteBtn = row.querySelector('.delete-btn');
+            const sellBtn = row.querySelector('.sell-btn');
+            const editBtn = row.querySelector('.edit-btn');
+
+            deleteBtn.addEventListener('click', function () {
+                row.remove();
+                showNotification('Material deleted successfully', 'success');
+            });
+
+            sellBtn.addEventListener('click', function () {
+                const material = row.cells[0].textContent;
+                const quantity = row.cells[1].textContent;
+                showNotification(`Sold ${quantity} of ${material}`, 'success');
+            });
+
+            editBtn.addEventListener('click', function () {
+                toggleEditRow(row, this);
+            });
+        }
+
+        // Toggle edit mode for a row
+        function toggleEditRow(row, btn) {
+            const isEditing = btn.textContent === 'Save';
+            const buyingCell = row.cells[2];
+            const sellingCell = row.cells[4];
+
+            if (!isEditing) {
+                // Enter edit mode
+                const buyingPrice = parseCurrency(buyingCell.textContent);
+                const sellingPrice = parseCurrency(sellingCell.textContent);
+
+                buyingCell.innerHTML = `<input type="number" class="edit-input" value="${buyingPrice}" style="width: 100px">`;
+                sellingCell.innerHTML = `<input type="number" class="edit-input" value="${sellingPrice}" style="width: 100px">`;
+
+                btn.textContent = 'Save';
+                btn.classList.remove('btn-secondary');
+                btn.classList.add('btn-success');
+            } else {
+                // Save changes
+                const buyingInput = buyingCell.querySelector('input');
+                const sellingInput = sellingCell.querySelector('input');
+
+                const newBuyingPrice = parseFloat(buyingInput.value) || 0;
+                const newSellingPrice = parseFloat(sellingInput.value) || 0;
+
+                buyingCell.textContent = formatCurrency(newBuyingPrice);
+                sellingCell.textContent = formatCurrency(newSellingPrice);
+
+                // Recalculate profit
+                updateRowProfit(row, newBuyingPrice, newSellingPrice);
+
+                btn.textContent = 'Edit';
+                btn.classList.remove('btn-success');
+                btn.classList.add('btn-secondary');
+
+                showNotification('Prices updated successfully', 'success');
+            }
+        }
+
+        // Helper to parse currency string to number
+        function parseCurrency(str) {
+            return parseFloat(str.replace(/[^0-9.-]+/g, ''));
+        }
+
+        // Helper to format number to currency string
+        function formatCurrency(num) {
+            return 'KSh ' + num.toLocaleString();
+        }
+
+        // Update profit cell based on prices
+        function updateRowProfit(row, buyingPrice, sellingPrice) {
+            const profitCell = row.cells[5];
+            const profit = sellingPrice - buyingPrice;
+
+            profitCell.className = profit >= 0 ? 'profit' : 'loss';
+            profitCell.textContent = (profit >= 0 ? 'KSh ' : '-KSh ') + Math.abs(profit).toLocaleString();
+        }
+
+        // Add event listeners to existing rows
+        document.querySelectorAll('#inventoryTable tbody tr').forEach(row => {
+            attachRowListeners(row);
+        });
+
+        // Initialize the application
+        function init() {
+            // Check for pending user in local storage
+            const storedPendingUser = localStorage.getItem('buildpro_pending_user');
+            const storedConfirmationCode = localStorage.getItem('buildpro_confirmation_code');
+
+            if (storedPendingUser && storedConfirmationCode) {
+                pendingUser = JSON.parse(storedPendingUser);
+                confirmationCode = storedConfirmationCode;
+
+                // Restore confirmation UI
+                showConfirmationUI(pendingUser.email);
+                showNotification('Resumed your sign-up session', 'info');
+            } else {
+                // Initially show auth page
+                authPage.classList.remove('hidden');
+                appContent.classList.add('hidden');
+                userInfo.classList.add('hidden');
+            }
+
+            // Set up code input auto-advance
+            const codeInputs = document.querySelectorAll('.code-input');
+            codeInputs.forEach((input, index) => {
+                input.addEventListener('input', () => {
+                    if (input.value.length === 1 && index < codeInputs.length - 1) {
+                        codeInputs[index + 1].focus();
+                    }
+                });
+
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Backspace' && input.value === '' && index > 0) {
+                        codeInputs[index - 1].focus();
+                    }
+                });
+            });
+        }
+
+        // Start the application
+        init();
+
+        // Code Protection
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        document.addEventListener('keydown', function (event) {
+            // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+            if (event.key === 'F12' ||
+                (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'J')) ||
+                (event.ctrlKey && event.key === 'U')) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    </script>
+</body>
+
+</html>
